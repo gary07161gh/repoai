@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+}
+
+group 'com.osrsmerch'
+version '1.0.0'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url = 'https://repo.runelite.net'
+    }
+}
+
+def runeLiteVersion = '1.10.36.1'
+
+dependencies {
+    compileOnly group: 'net.runelite', name: 'client', version: runeLiteVersion
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
+
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.12.0'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.36'
+
+    testImplementation group: 'net.runelite', name: 'client', version: runeLiteVersion
+    testImplementation group: 'net.runelite', name: 'jshell', version: runeLiteVersion
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task run(type: JavaExec) {
+    group = 'runelite'
+    description = 'Runs RuneLite with the OSRS Merch Overlay plugin loaded'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.osrsmerch.OsrsMerchPluginLauncher'
+    enableAssertions = true
+}
