@@ -120,6 +120,39 @@ public interface OsrsMerchConfig extends Config {
         return true;
     }
 
+    @ConfigItem(
+        keyName = "showPriceGraph",
+        name = "Show Price Graph",
+        description = "Display a 24-hour price history graph with volume bars",
+        section = displaySection,
+        position = 24
+    )
+    default boolean showPriceGraph() {
+        return true;
+    }
+
+    @ConfigItem(
+        keyName = "instabuyLineColor",
+        name = "Instabuy Line Color",
+        description = "Color for the instabuy price line on the graph",
+        section = displaySection,
+        position = 25
+    )
+    default Color instabuyLineColor() {
+        return new Color(0, 230, 118);
+    }
+
+    @ConfigItem(
+        keyName = "instasellLineColor",
+        name = "Instasell Line Color",
+        description = "Color for the instasell price line on the graph",
+        section = displaySection,
+        position = 26
+    )
+    default Color instasellLineColor() {
+        return new Color(255, 64, 129);
+    }
+
     @ConfigSection(
         name = "API & Sync",
         description = "OSRS Wiki real-time API sync configuration",

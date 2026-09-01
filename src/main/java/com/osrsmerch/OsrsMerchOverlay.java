@@ -3,6 +3,7 @@ package com.osrsmerch;
 import com.osrsmerch.model.ItemMapping;
 import com.osrsmerch.model.ItemPriceData;
 import com.osrsmerch.model.ItemVolumeData;
+import com.osrsmerch.model.TimeseriesDataPoint;
 import com.osrsmerch.service.OsrsWikiPriceService;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -15,6 +16,7 @@ import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
@@ -127,19 +129,36 @@ public class OsrsMerchOverlay extends Overlay {
         long now = System.currentTimeMillis() / 1000L;
 
         // Render Header
-        int headerHeight = 34;
-        renderHeader(g, itemId, mapping, priceData, x + 8, y + 6, w - 16, headerHeight, now);
+        int headerHeight = 32;
+        renderHeader(g, itemId, mapping, priceData, x + 8, y + 5, w - 16, headerHeight, now);
 
         // Content Area Bounds
-        int contentY = y + headerHeight + 8;
-        int footerHeight = config.enableQuickButtons() ? 28 : 0;
-        int contentH = h - headerHeight - footerHeight - 16;
+        int contentY = y + headerHeight + 5;
+        int footerHeight = config.enableQuickButtons() ? 26 : 0;
+        int contentH = h - headerHeight - footerHeight - 12;
 
-        renderMetricsGrid(g, priceData, mapping, volumeData, x + 8, contentY, w - 16, contentH, now);
+        if (config.showPriceGraph()) {
+            int stripH = 18;
+            renderSummaryStrip(g, priceData, mapping, volumeData, x + 8, contentY, w - 16, stripH, now);
+
+            int graphY = contentY + stripH + 3;
+            int graphH = contentH - stripH - 3;
+
+            if (graphH > 25) {
+                PriceGraphRenderer graphRenderer = new PriceGraphRenderer(
+                    config.instabuyLineColor(),
+                    config.instasellLineColor()
+                );
+                List<TimeseriesDataPoint> points = priceService.getTimeseries(itemId);
+                graphRenderer.render(g, points, x + 8, graphY, w - 16, graphH);
+            }
+        } else {
+            renderMetricsGrid(g, priceData, mapping, volumeData, x + 8, contentY, w - 16, contentH, now);
+        }
 
         // Render Bottom Quick Buttons
         if (config.enableQuickButtons()) {
-            int footerY = y + h - footerHeight - 6;
+            int footerY = y + h - footerHeight - 5;
             renderQuickActionButtons(g, priceData, x + 8, footerY, w - 16, footerHeight);
         }
 
@@ -262,6 +281,87 @@ public class OsrsMerchOverlay extends Overlay {
         int taxW = fm.stringWidth(taxTag);
         g.setColor(TEXT_GOLD);
         g.drawString(taxTag, x + w - taxW - 2, y + 29);
+    }
+
+    private void renderSummaryStrip(
+        Graphics2D g,
+        ItemPriceData priceData,
+        ItemMapping mapping,
+        ItemVolumeData volumeData,
+        int x,
+        int y,
+        int w,
+        int h,
+        long now
+    ) {
+        g.setColor(CARD_BG);
+        g.fillRoundRect(x, y, w, h, 4, 4);
+        g.setColor(CARD_BORDER);
+        g.drawRoundRect(x, y, w, h, 4, 4);
+
+        if (priceData == null) {
+            g.setFont(FONT_ITALIC);
+            g.setColor(TEXT_MUTED);
+            g.drawString("Fetching price metrics...", x + 8, y + 13);
+            return;
+        }
+
+        double taxRate = config.taxPercentage();
+        int taxCap = config.taxCap();
+        int net = priceData.getNetMargin(taxRate, taxCap);
+        double roi = priceData.getRoi(taxRate, taxCap);
+
+        int curX = x + 8;
+        int textY = y + 13;
+
+        // Ask
+        g.setFont(FONT_LABEL);
+        g.setColor(TEXT_MUTED);
+        g.drawString("Ask: ", curX, textY);
+        curX += g.getFontMetrics().stringWidth("Ask: ");
+        g.setFont(FONT_VALUE);
+        g.setColor(Color.WHITE);
+        String askStr = priceData.getHigh() > 0 ? GP_FORMAT.format(priceData.getHigh()) + " gp" : "None";
+        g.drawString(askStr, curX, textY);
+        curX += g.getFontMetrics().stringWidth(askStr) + 12;
+
+        // Bid
+        g.setFont(FONT_LABEL);
+        g.setColor(TEXT_MUTED);
+        g.drawString("Bid: ", curX, textY);
+        curX += g.getFontMetrics().stringWidth("Bid: ");
+        g.setFont(FONT_VALUE);
+        g.setColor(Color.WHITE);
+        String bidStr = priceData.getLow() > 0 ? GP_FORMAT.format(priceData.getLow()) + " gp" : "None";
+        g.drawString(bidStr, curX, textY);
+        curX += g.getFontMetrics().stringWidth(bidStr) + 12;
+
+        // Net Margin
+        g.setFont(FONT_LABEL);
+        g.setColor(TEXT_MUTED);
+        g.drawString("Margin: ", curX, textY);
+        curX += g.getFontMetrics().stringWidth("Margin: ");
+        g.setFont(FONT_VALUE);
+        Color marginColor = net > 0 ? config.positiveProfitColor() : (net < 0 ? config.negativeProfitColor() : TEXT_MUTED);
+        g.setColor(marginColor);
+        String marginStr = (net > 0 ? "+" : "") + GP_FORMAT.format(net) + " gp";
+        if (config.showRoi() && priceData.getLow() > 0) {
+            marginStr += " (" + PERCENT_FORMAT.format(roi / 100.0) + " ROI)";
+        }
+        g.drawString(marginStr, curX, textY);
+        curX += g.getFontMetrics().stringWidth(marginStr) + 12;
+
+        // 5m Volume
+        if (config.showVolumeMetrics() && volumeData != null) {
+            g.setFont(FONT_LABEL);
+            g.setColor(TEXT_MUTED);
+            g.drawString("5m Vol: ", curX, textY);
+            curX += g.getFontMetrics().stringWidth("5m Vol: ");
+            g.setFont(FONT_VALUE);
+            g.setColor(TEXT_CYAN);
+            String volStr = GP_FORMAT.format(volumeData.getTotalVolume()) + " (▲" + volumeData.getHighPriceVolume() + " ▼" + volumeData.getLowPriceVolume() + ")";
+            g.drawString(volStr, curX, textY);
+        }
     }
 
     private void renderMetricsGrid(

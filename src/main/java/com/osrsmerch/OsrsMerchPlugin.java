@@ -56,6 +56,8 @@ public class OsrsMerchPlugin extends Plugin {
     @Getter
     private int selectedItemId = -1;
 
+    private int previousSelectedItemId = -1;
+
     @Getter
     private boolean isGeOfferSetupOpen = false;
 
@@ -172,10 +174,15 @@ public class OsrsMerchPlugin extends Plugin {
 
             if (itemId > 0) {
                 this.selectedItemId = itemId;
+                if (itemId != previousSelectedItemId) {
+                    previousSelectedItemId = itemId;
+                    priceService.fetchTimeseriesIfNeeded(itemId);
+                }
             }
         } else {
             this.isGeOfferSetupOpen = false;
             this.selectedItemId = -1;
+            this.previousSelectedItemId = -1;
         }
     }
 }
