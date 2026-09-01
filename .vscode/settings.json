@@ -12,5 +12,12 @@
     "antigravityPro.autoFormat": true,
     "antigravityPro.git.autoCheckpoint": true,
     "antigravityPro.puppeteerBlocker.enabled": true,
-    "antigravityPro.temporalSnapshot.enabled": true
+    "antigravityPro.temporalSnapshot.enabled": true,
+    "antigravityPro.ralphLoop.messages": [
+        
+        "Keep going.",
+        "Continue.",
+        "Are you done?",
+        "What's next?"
+    ]
 }
