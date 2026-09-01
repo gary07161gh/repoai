@@ -59,7 +59,7 @@ public class OsrsWikiPriceService {
         this.config = config;
     }
 
-    public void start() {
+    public synchronized void start() {
         if (isRunning) {
             return;
         }
@@ -74,6 +74,20 @@ public class OsrsWikiPriceService {
         fetch5mVolumes();
 
         // Schedule periodic sync
+        scheduleSyncTask();
+    }
+
+    public synchronized void restartScheduler() {
+        if (scheduledTask != null && !scheduledTask.isCancelled()) {
+            scheduledTask.cancel(false);
+            scheduledTask = null;
+        }
+        if (isRunning) {
+            scheduleSyncTask();
+        }
+    }
+
+    private void scheduleSyncTask() {
         int interval = Math.max(5, config.refreshIntervalSeconds());
         scheduledTask = executor.scheduleAtFixedRate(() -> {
             try {
@@ -85,24 +99,7 @@ public class OsrsWikiPriceService {
         }, interval, interval, TimeUnit.SECONDS);
     }
 
-    public void restartScheduler() {
-        if (scheduledTask != null && !scheduledTask.isCancelled()) {
-            scheduledTask.cancel(false);
-        }
-        if (isRunning) {
-            int interval = Math.max(5, config.refreshIntervalSeconds());
-            scheduledTask = executor.scheduleAtFixedRate(() -> {
-                try {
-                    fetchAllPrices();
-                    fetch5mVolumes();
-                } catch (Exception e) {
-                    log.warn("Error during periodic OSRS Wiki price sync: {}", e.getMessage());
-                }
-            }, interval, interval, TimeUnit.SECONDS);
-        }
-    }
-
-    public void stop() {
+    public synchronized void stop() {
         isRunning = false;
         if (scheduledTask != null) {
             scheduledTask.cancel(true);
@@ -111,7 +108,7 @@ public class OsrsWikiPriceService {
         log.info("Stopped OSRS Wiki Price Service.");
     }
 
-    public void shutdown() {
+    public synchronized void shutdown() {
         stop();
         executor.shutdownNow();
     }
@@ -136,15 +133,18 @@ public class OsrsWikiPriceService {
         return !priceCache.isEmpty() && !mappingCache.isEmpty();
     }
 
-    public void fetchAllPrices() {
+    private String getEffectiveUserAgent() {
         String userAgent = config.customUserAgent();
         if (userAgent == null || userAgent.trim().isEmpty()) {
-            userAgent = "RuneLite-OsrsMerchOverlay";
+            return "RuneLite-OsrsMerchOverlay";
         }
+        return userAgent.trim();
+    }
 
+    public void fetchAllPrices() {
         Request request = new Request.Builder()
             .url(LATEST_PRICES_URL)
-            .header("User-Agent", userAgent)
+            .header("User-Agent", getEffectiveUserAgent())
             .build();
 
         httpClient.newCall(request).enqueue(new Callback() {
@@ -193,14 +193,9 @@ public class OsrsWikiPriceService {
     }
 
     public void fetch5mVolumes() {
-        String userAgent = config.customUserAgent();
-        if (userAgent == null || userAgent.trim().isEmpty()) {
-            userAgent = "RuneLite-OsrsMerchOverlay";
-        }
-
         Request request = new Request.Builder()
             .url(VOLUME_5M_URL)
-            .header("User-Agent", userAgent)
+            .header("User-Agent", getEffectiveUserAgent())
             .build();
 
         httpClient.newCall(request).enqueue(new Callback() {
@@ -247,14 +242,9 @@ public class OsrsWikiPriceService {
     }
 
     public void fetchItemMapping() {
-        String userAgent = config.customUserAgent();
-        if (userAgent == null || userAgent.trim().isEmpty()) {
-            userAgent = "RuneLite-OsrsMerchOverlay";
-        }
-
         Request request = new Request.Builder()
             .url(MAPPING_URL)
-            .header("User-Agent", userAgent)
+            .header("User-Agent", getEffectiveUserAgent())
             .build();
 
         httpClient.newCall(request).enqueue(new Callback() {

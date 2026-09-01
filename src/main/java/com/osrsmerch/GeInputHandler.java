@@ -25,8 +25,7 @@ public class GeInputHandler extends MouseAdapter {
         SET_BUY_INSTA,
         SET_BUY_OUTBID,
         SET_SELL_INSTA,
-        SET_SELL_UNDERCUT,
-        REFRESH_DATA
+        SET_SELL_UNDERCUT
     }
 
     private final Client client;
@@ -42,6 +41,12 @@ public class GeInputHandler extends MouseAdapter {
     @Getter
     @Setter
     private boolean overlayActive = false;
+
+    @Getter
+    private int lastCopiedPrice = 0;
+
+    @Getter
+    private long lastCopiedTime = 0L;
 
     @Inject
     public GeInputHandler(Client client, ClientThread clientThread) {
@@ -100,12 +105,6 @@ public class GeInputHandler extends MouseAdapter {
     }
 
     private void handleButtonClick(ButtonType type, int price) {
-        if (type == ButtonType.REFRESH_DATA) {
-            log.debug("Manual refresh button clicked.");
-            playClickFeedback();
-            return;
-        }
-
         if (price <= 0) {
             return;
         }
@@ -113,30 +112,29 @@ public class GeInputHandler extends MouseAdapter {
         log.debug("Applying price {} for button {}", price, type);
         playClickFeedback();
 
-        clientThread.invokeLater(() -> {
-            applyPriceToGeOffer(price);
-        });
+        clientThread.invokeLater(() -> applyPriceToGeOffer(price));
     }
 
     /**
-     * Injects or sets the price on the active Grand Exchange offer window.
+     * Copies price to clipboard and attempts to inject into the active Grand Exchange offer window.
      */
     public void applyPriceToGeOffer(int price) {
-        if (client == null || !overlayActive) {
+        if (client == null || !overlayActive || price <= 0) {
             return;
         }
 
+        this.lastCopiedPrice = price;
+        this.lastCopiedTime = System.currentTimeMillis();
+
         try {
-            // Copy to clipboard as helper
+            // Copy to clipboard as convenient helper
             Toolkit.getDefaultToolkit().getSystemClipboard()
                 .setContents(new StringSelection(String.valueOf(price)), null);
 
-            // Script 80 / 84 / 779 are standard GE price adjustment scripts in OSRS
-            // Try standard RuneLite script execution for GE price
-            // ScriptID: 80 (ge_set_price), script params: [price]
+            // Attempt to trigger GE price setup script
             client.runScript(80, price);
         } catch (Exception ex) {
-            log.debug("Script 80 invocation fallback: {}", ex.getMessage());
+            log.trace("GE script execution fallback: {}", ex.getMessage());
         }
     }
 

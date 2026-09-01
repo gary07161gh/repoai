@@ -7,7 +7,6 @@ import javax.inject.Singleton;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
-import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.events.WidgetClosed;
 import net.runelite.api.events.WidgetLoaded;
@@ -97,14 +96,19 @@ public class OsrsMerchPlugin extends Plugin {
     }
 
     @Subscribe
-    public void onClientTick(ClientTick event) {
-        checkGeState();
+    public void onScriptPostFired(ScriptPostFired event) {
+        int scriptId = event.getScriptId();
+        // Script 779 / 80 / 84 / 782 are fired when GE item setup or search updates
+        if (scriptId == 779 || scriptId == 80 || scriptId == 84 || scriptId == 782) {
+            checkGeState();
+        }
     }
 
     @Subscribe
-    public void onScriptPostFired(ScriptPostFired event) {
-        // Script 779 / 80 / 84 are fired when GE item setup updates
-        checkGeState();
+    public void onVarbitChanged(net.runelite.api.events.VarbitChanged event) {
+        if (isGeOfferSetupOpen) {
+            checkGeState();
+        }
     }
 
     @Subscribe
@@ -130,12 +134,8 @@ public class OsrsMerchPlugin extends Plugin {
             int itemId = client.getVarpValue(VarPlayerID.TRADINGPOST_SEARCH);
             if (itemId > 0) {
                 this.selectedItemId = itemId;
-            } else {
-                // Fallback check on offer setup item widget
-                Widget itemWidget = client.getWidget(InterfaceID.GeOffers.SETUP);
-                if (itemWidget != null && itemWidget.getItemId() > 0) {
-                    this.selectedItemId = itemWidget.getItemId();
-                }
+            } else if (geOfferContainer.getItemId() > 0) {
+                this.selectedItemId = geOfferContainer.getItemId();
             }
         } else {
             isGeOfferSetupOpen = false;

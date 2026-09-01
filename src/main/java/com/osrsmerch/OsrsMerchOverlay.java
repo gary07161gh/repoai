@@ -47,6 +47,17 @@ public class OsrsMerchOverlay extends Overlay {
     private static final Color TEXT_CYAN = new Color(56, 189, 248);
     private static final Color TEXT_GOLD = new Color(251, 191, 36);
 
+    // Cached Font & Stroke Constants (prevents GC allocation pressure on every frame)
+    private static final Font FONT_HEADER = new Font(Font.SANS_SERIF, Font.BOLD, 13);
+    private static final Font FONT_LABEL = new Font(Font.SANS_SERIF, Font.PLAIN, 10);
+    private static final Font FONT_VALUE = new Font(Font.SANS_SERIF, Font.BOLD, 11);
+    private static final Font FONT_LARGE_VALUE = new Font(Font.SANS_SERIF, Font.BOLD, 12);
+    private static final Font FONT_TINY = new Font(Font.SANS_SERIF, Font.PLAIN, 9);
+    private static final Font FONT_CARD_TITLE = new Font(Font.SANS_SERIF, Font.BOLD, 9);
+    private static final Font FONT_BUTTON = new Font(Font.SANS_SERIF, Font.BOLD, 10);
+    private static final Font FONT_ITALIC = new Font(Font.SANS_SERIF, Font.ITALIC, 11);
+    private static final BasicStroke BORDER_STROKE = new BasicStroke(1.2f);
+
     private final Client client;
     private final OsrsMerchPlugin plugin;
     private final OsrsMerchConfig config;
@@ -95,6 +106,7 @@ public class OsrsMerchOverlay extends Overlay {
         }
 
         inputHandler.setOverlayActive(true);
+        // Clear buttons at the start of each frame so we only register currently-rendered button bounds
         inputHandler.clearButtons();
 
         // Enable high-quality anti-aliasing for text and shapes
@@ -166,7 +178,7 @@ public class OsrsMerchOverlay extends Overlay {
 
         // Outer & Accent Border
         g.setColor(BORDER_OUTER);
-        g.setStroke(new BasicStroke(1.2f));
+        g.setStroke(BORDER_STROKE);
         g.drawRoundRect(x, y, w - 1, h - 1, 6, 6);
 
         // Top Accent Line
@@ -196,29 +208,33 @@ public class OsrsMerchOverlay extends Overlay {
             ? mapping.getName() 
             : "Item #" + itemId;
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 13));
+        g.setFont(FONT_HEADER);
         g.setColor(Color.WHITE);
         g.drawString(itemName, textX, y + 16);
 
         // Item Buy Limit Badge
         int limit = mapping != null ? mapping.getLimit() : 0;
-        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+        g.setFont(FONT_LABEL);
         String limitStr = limit > 0 ? "4h Limit: " + GP_FORMAT.format(limit) : "4h Limit: None";
         g.setColor(TEXT_CYAN);
         g.drawString(limitStr, textX, y + 29);
 
-        // Right-aligned Live Status & Freshness
+        // Right-aligned Live Status & Freshness & Sync Time
         String statusStr;
         Color statusColor;
+        long lastSync = priceService.getLastSuccessfulSyncTime();
+        long syncAge = lastSync > 0 ? (System.currentTimeMillis() - lastSync) / 1000L : -1;
+        String syncSuffix = syncAge >= 0 ? " | Sync " + (syncAge < 60 ? syncAge + "s" : (syncAge / 60) + "m") + " ago" : "";
+
         if (priceData != null && (priceData.getHigh() > 0 || priceData.getLow() > 0)) {
             long newestAge = Math.min(
                 priceData.getHighTime() > 0 ? now - priceData.getHighTime() : Long.MAX_VALUE,
                 priceData.getLowTime() > 0 ? now - priceData.getLowTime() : Long.MAX_VALUE
             );
-            statusStr = "● Real-Time (" + (newestAge < 60 ? newestAge + "s" : (newestAge / 60) + "m") + " ago)";
+            statusStr = "● Real-Time (" + (newestAge < 60 ? newestAge + "s" : (newestAge / 60) + "m") + " ago)" + syncSuffix;
             statusColor = config.positiveProfitColor();
         } else {
-            statusStr = "● No Live Trades";
+            statusStr = "● No Live Trades" + syncSuffix;
             statusColor = TEXT_MUTED;
         }
 
@@ -227,8 +243,10 @@ public class OsrsMerchOverlay extends Overlay {
         g.setColor(statusColor);
         g.drawString(statusStr, x + w - statusW - 2, y + 16);
 
-        // Tax rate tag in header
-        String taxTag = "Tax: " + config.taxPercentage() + "%";
+        // Tax rate or Exemption tag in header
+        String taxTag = (priceData != null && priceData.isTaxExempt()) 
+            ? "Tax: 0% (Exempt <100gp)" 
+            : "Tax: " + config.taxPercentage() + "%";
         int taxW = fm.stringWidth(taxTag);
         g.setColor(TEXT_GOLD);
         g.drawString(taxTag, x + w - taxW - 2, y + 29);
@@ -250,12 +268,12 @@ public class OsrsMerchOverlay extends Overlay {
 
         // Card 1: Prices
         renderCard(g, x, y, colWidth, h, "MARKET PRICES");
-        renderPriceColumn(g, priceData, x + 6, y + 18, colWidth - 12, now);
+        renderPriceColumn(g, priceData, volumeData, x + 6, y + 18, colWidth - 12, now);
 
         // Card 2: Margins & Profit
         int col2X = x + colWidth + colGap;
-        renderCard(g, col2X, y, colWidth, h, "MARGIN & PROFIT");
-        renderMarginColumn(g, priceData, mapping, col2X + 6, y + 18, colWidth - 12);
+        renderCard(g, col2X, y, colWidth, h, "MARGIN & MOMENTUM");
+        renderMarginColumn(g, priceData, mapping, volumeData, col2X + 6, y + 18, colWidth - 12);
 
         // Card 3: Liquidity & 5m Volume
         int col3X = col2X + colWidth + colGap;
@@ -269,7 +287,7 @@ public class OsrsMerchOverlay extends Overlay {
         g.setColor(CARD_BORDER);
         g.drawRoundRect(x, y, w, h, 4, 4);
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 9));
+        g.setFont(FONT_CARD_TITLE);
         g.setColor(TEXT_MUTED);
         g.drawString(title, x + 6, y + 12);
     }
@@ -277,57 +295,59 @@ public class OsrsMerchOverlay extends Overlay {
     private void renderPriceColumn(
         Graphics2D g,
         ItemPriceData priceData,
+        ItemVolumeData volumeData,
         int x,
         int y,
         int w,
         long now
     ) {
         if (priceData == null) {
-            g.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 11));
+            g.setFont(FONT_ITALIC);
             g.setColor(TEXT_MUTED);
             g.drawString("Fetching prices...", x, y + 18);
             return;
         }
 
         // Insta-Buy (High / Ask)
-        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+        g.setFont(FONT_LABEL);
         g.setColor(TEXT_MUTED);
         g.drawString("Insta-Buy (Ask):", x, y + 12);
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 11));
+        g.setFont(FONT_VALUE);
         g.setColor(Color.WHITE);
         String highStr = priceData.getHigh() > 0 ? GP_FORMAT.format(priceData.getHigh()) + " gp" : "None";
         g.drawString(highStr, x, y + 25);
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 9));
+        g.setFont(FONT_TINY);
         g.setColor(TEXT_MUTED);
         g.drawString(priceData.getHighAgeFormatted(now), x, y + 36);
 
         // Insta-Sell (Low / Bid)
-        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+        g.setFont(FONT_LABEL);
         g.setColor(TEXT_MUTED);
-        g.drawString("Insta-Sell (Bid):", x, y + 50);
+        g.drawString("Insta-Sell (Bid):", x, y + 49);
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 11));
+        g.setFont(FONT_VALUE);
         g.setColor(Color.WHITE);
         String lowStr = priceData.getLow() > 0 ? GP_FORMAT.format(priceData.getLow()) + " gp" : "None";
-        g.drawString(lowStr, x, y + 63);
+        g.drawString(lowStr, x, y + 62);
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 9));
+        g.setFont(FONT_TINY);
         g.setColor(TEXT_MUTED);
-        g.drawString(priceData.getLowAgeFormatted(now), x, y + 74);
+        g.drawString(priceData.getLowAgeFormatted(now), x, y + 73);
     }
 
     private void renderMarginColumn(
         Graphics2D g,
         ItemPriceData priceData,
         ItemMapping mapping,
+        ItemVolumeData volumeData,
         int x,
         int y,
         int w
     ) {
         if (priceData == null || priceData.getHigh() <= 0 || priceData.getLow() <= 0) {
-            g.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 11));
+            g.setFont(FONT_ITALIC);
             g.setColor(TEXT_MUTED);
             g.drawString("No margin data", x, y + 18);
             return;
@@ -342,42 +362,55 @@ public class OsrsMerchOverlay extends Overlay {
         double roi = priceData.getRoi(taxRate, taxCap);
 
         // Net Margin
-        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+        g.setFont(FONT_LABEL);
         g.setColor(TEXT_MUTED);
         g.drawString("Net Margin:", x, y + 12);
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
+        g.setFont(FONT_LARGE_VALUE);
         Color marginColor = net > 0 ? config.positiveProfitColor() : config.negativeProfitColor();
         g.setColor(marginColor);
         String netStr = (net > 0 ? "+" : "") + GP_FORMAT.format(net) + " gp";
-        g.drawString(netStr, x, y + 26);
+        g.drawString(netStr, x, y + 25);
 
-        // Tax deduction line
-        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 9));
+        // Tax deduction line / Exemption
+        g.setFont(FONT_TINY);
         g.setColor(TEXT_GOLD);
-        g.drawString("Tax: -" + GP_FORMAT.format(tax) + " gp (Gross: " + GP_FORMAT.format(gross) + ")", x, y + 38);
+        String taxStr = priceData.isTaxExempt() 
+            ? "Tax: 0 gp (Exempt)" 
+            : "Tax: -" + GP_FORMAT.format(tax) + " gp (Gross: " + GP_FORMAT.format(gross) + ")";
+        g.drawString(taxStr, x, y + 36);
 
         // ROI %
         if (config.showRoi()) {
-            g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+            g.setFont(FONT_LABEL);
             g.setColor(TEXT_MUTED);
-            g.drawString("ROI:", x, y + 52);
+            g.drawString("ROI:", x, y + 49);
 
-            g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 11));
+            g.setFont(FONT_VALUE);
             g.setColor(marginColor);
-            g.drawString(PERCENT_FORMAT.format(roi / 100.0), x + 28, y + 52);
+            g.drawString(PERCENT_FORMAT.format(roi / 100.0), x + 26, y + 49);
         }
 
-        // Limit Potential Profit
+        // Limit Potential Profit & Short-term momentum trend
         if (config.showBuyLimitProfit() && mapping != null && mapping.getLimit() > 0) {
             long limitProfit = priceData.getPotentialLimitProfit(mapping.getLimit(), taxRate, taxCap);
-            g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+            g.setFont(FONT_LABEL);
             g.setColor(TEXT_MUTED);
-            g.drawString("Limit Profit: ", x, y + 66);
+            g.drawString("Limit Profit: ", x, y + 62);
 
-            g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 11));
+            g.setFont(FONT_VALUE);
             g.setColor(marginColor);
-            g.drawString(formatShortGp(limitProfit), x, y + 78);
+            g.drawString(formatShortGp(limitProfit), x, y + 74);
+        } else {
+            // Display price momentum trend badge
+            ItemPriceData.PriceTrend trend = priceData.getTrend(volumeData);
+            g.setFont(FONT_LABEL);
+            g.setColor(TEXT_MUTED);
+            g.drawString("Momentum: ", x, y + 62);
+
+            g.setFont(FONT_CARD_TITLE);
+            g.setColor(trend.getColor());
+            g.drawString(trend.getLabel(), x, y + 74);
         }
     }
 
@@ -389,14 +422,14 @@ public class OsrsMerchOverlay extends Overlay {
         int w
     ) {
         if (!config.showVolumeMetrics()) {
-            g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+            g.setFont(FONT_LABEL);
             g.setColor(TEXT_MUTED);
             g.drawString("Volumes hidden in config", x, y + 20);
             return;
         }
 
         if (volumeData == null) {
-            g.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 11));
+            g.setFont(FONT_ITALIC);
             g.setColor(TEXT_MUTED);
             g.drawString("No 5m trades recorded", x, y + 20);
             return;
@@ -406,15 +439,15 @@ public class OsrsMerchOverlay extends Overlay {
         int sold = volumeData.getLowPriceVolume();
         int total = volumeData.getTotalVolume();
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+        g.setFont(FONT_LABEL);
         g.setColor(TEXT_MUTED);
         g.drawString("5m Trades: ", x, y + 12);
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 11));
+        g.setFont(FONT_VALUE);
         g.setColor(Color.WHITE);
         g.drawString(GP_FORMAT.format(total) + " items", x + 60, y + 12);
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
+        g.setFont(FONT_LABEL);
         g.setColor(config.positiveProfitColor());
         g.drawString("▲ Bought: " + GP_FORMAT.format(bought), x, y + 28);
 
@@ -438,7 +471,7 @@ public class OsrsMerchOverlay extends Overlay {
             liqColor = config.negativeProfitColor();
         }
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 9));
+        g.setFont(FONT_CARD_TITLE);
         g.setColor(liqColor);
         g.drawString("● " + liquidityRating, x, y + 66);
     }
@@ -530,21 +563,25 @@ public class OsrsMerchOverlay extends Overlay {
         inputHandler.registerButton(type, bounds, price);
 
         boolean isHovered = inputHandler.getHoveredButton() == type;
-        g.setColor(isHovered ? BTN_HOVER_BG : BTN_BG);
+        boolean isRecentlyCopied = inputHandler.getLastCopiedPrice() == price 
+            && (System.currentTimeMillis() - inputHandler.getLastCopiedTime() < 2000);
+
+        g.setColor(isRecentlyCopied ? new Color(20, 70, 45) : (isHovered ? BTN_HOVER_BG : BTN_BG));
         g.fillRoundRect(x, y, w, h, 4, 4);
 
-        g.setColor(isHovered ? config.accentColor() : BTN_BORDER);
+        g.setColor(isRecentlyCopied ? config.positiveProfitColor() : (isHovered ? config.accentColor() : BTN_BORDER));
         g.drawRoundRect(x, y, w, h, 4, 4);
 
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 10));
-        g.setColor(price > 0 ? (isHovered ? Color.WHITE : TEXT_GOLD) : TEXT_MUTED);
+        g.setFont(FONT_BUTTON);
+        String displayLabel = isRecentlyCopied ? "✓ Copied!" : label;
+        g.setColor(isRecentlyCopied ? config.positiveProfitColor() : (price > 0 ? (isHovered ? Color.WHITE : TEXT_GOLD) : TEXT_MUTED));
 
         FontMetrics fm = g.getFontMetrics();
-        int textW = fm.stringWidth(label);
+        int textW = fm.stringWidth(displayLabel);
         int textX = x + Math.max(2, (w - textW) / 2);
         int textY = y + ((h - fm.getHeight()) / 2) + fm.getAscent();
 
-        g.drawString(label, textX, textY);
+        g.drawString(displayLabel, textX, textY);
     }
 
     private String formatShortGp(long amount) {
