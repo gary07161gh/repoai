@@ -19,3 +19,9 @@ out/
 # OS metadata
 .DS_Store
 Thumbs.db
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.env

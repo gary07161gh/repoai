@@ -23,7 +23,6 @@ public class PriceGraphRenderer {
     // Graph colors matching OSRS Wiki style
     private static final Color GRID_COLOR = new Color(40, 46, 62, 120);
     private static final Color AXIS_LABEL_COLOR = new Color(130, 140, 160);
-    private static final Color LEGEND_BG = new Color(20, 24, 33, 200);
 
     // Line styles
     private static final BasicStroke PRICE_LINE_STROKE = new BasicStroke(1.5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);

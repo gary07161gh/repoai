@@ -3,5 +3,14 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "markdown.copyFiles.destination": {
         "**/*.md": "/assets/${fileName}"
-    }
+    },
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+    "python.terminal.activateEnvironment": true,
+    "python-envs.workspaceSearchPaths": [
+        "${workspaceFolder}/.venv"
+    ],
+    "antigravityPro.autoFormat": true,
+    "antigravityPro.git.autoCheckpoint": true,
+    "antigravityPro.puppeteerBlocker.enabled": true,
+    "antigravityPro.temporalSnapshot.enabled": true
 }

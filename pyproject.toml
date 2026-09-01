@@ -1,0 +1,26 @@
+[project]
+name = "osrs-merch"
+version = "0.1.0"
+description = "OSRS Merch Overlay & Market Analytics Tooling"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "google-antigravity>=0.1.15",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.9.0",
+    "mypy>=1.14.0",
+]
+
+[tool.uv]
+managed = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
