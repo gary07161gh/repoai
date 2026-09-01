@@ -19,13 +19,12 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
+import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.OverlayPriority;
 
 @Slf4j
 @Singleton
@@ -39,7 +38,6 @@ public class OsrsMerchOverlay extends Overlay {
     private static final Color BG_TOP = new Color(20, 24, 33, 245);
     private static final Color BG_BOTTOM = new Color(13, 16, 23, 250);
     private static final Color BORDER_OUTER = new Color(45, 52, 68);
-    private static final Color BORDER_INNER = new Color(28, 33, 44);
     private static final Color CARD_BG = new Color(25, 30, 42, 200);
     private static final Color CARD_BORDER = new Color(50, 58, 76, 180);
     private static final Color BTN_BG = new Color(34, 41, 56);
@@ -74,7 +72,7 @@ public class OsrsMerchOverlay extends Overlay {
 
         setPosition(OverlayPosition.DYNAMIC);
         setLayer(OverlayLayer.ABOVE_WIDGETS);
-        setPriority(OverlayPriority.HIGH);
+        setPriority(PRIORITY_HIGH);
     }
 
     @Override
@@ -142,15 +140,15 @@ public class OsrsMerchOverlay extends Overlay {
         }
 
         // Try standard chatbox container, parent, or full input
-        Widget chatbox = client.getWidget(WidgetInfo.CHATBOX_CONTAINER);
+        Widget chatbox = client.getWidget(ComponentID.CHATBOX_CONTAINER);
         if (chatbox == null || chatbox.isHidden()) {
-            chatbox = client.getWidget(WidgetInfo.CHATBOX_PARENT);
+            chatbox = client.getWidget(ComponentID.CHATBOX_PARENT);
         }
         if (chatbox == null || chatbox.isHidden()) {
-            chatbox = client.getWidget(WidgetInfo.CHATBOX_FULL_INPUT);
+            chatbox = client.getWidget(ComponentID.CHATBOX_FULL_INPUT);
         }
         if (chatbox == null || chatbox.isHidden()) {
-            chatbox = client.getWidget(WidgetInfo.CHATBOX_MESSAGES);
+            chatbox = client.getWidget(ComponentID.CHATBOX_MESSAGES);
         }
 
         if (chatbox != null && !chatbox.isHidden()) {

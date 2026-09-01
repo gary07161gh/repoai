@@ -10,7 +10,6 @@ import com.osrsmerch.model.ItemPriceData;
 import com.osrsmerch.model.ItemVolumeData;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

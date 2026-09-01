@@ -5,8 +5,10 @@ plugins {
 group 'com.osrsmerch'
 version '1.0.0'
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 repositories {
     mavenLocal()
@@ -16,7 +18,7 @@ repositories {
     }
 }
 
-def runeLiteVersion = '1.10.36.1'
+def runeLiteVersion = '1.12.37'
 
 dependencies {
     compileOnly group: 'net.runelite', name: 'client', version: runeLiteVersion
@@ -36,6 +38,10 @@ dependencies {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+test {
+    enableAssertions = true
 }
 
 task run(type: JavaExec) {

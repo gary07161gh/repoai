@@ -12,9 +12,9 @@ import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.events.WidgetClosed;
 import net.runelite.api.events.WidgetLoaded;
+import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.widgets.InterfaceID;
 import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -34,9 +34,6 @@ public class OsrsMerchPlugin extends Plugin {
 
     @Inject
     private Client client;
-
-    @Inject
-    private OsrsMerchConfig config;
 
     @Inject
     private OsrsMerchOverlay overlay;
@@ -127,7 +124,7 @@ public class OsrsMerchPlugin extends Plugin {
             return;
         }
 
-        Widget geOfferContainer = client.getWidget(WidgetInfo.GRAND_EXCHANGE_OFFER_CONTAINER);
+        Widget geOfferContainer = client.getWidget(ComponentID.GRAND_EXCHANGE_OFFER_CONTAINER);
         if (geOfferContainer != null && !geOfferContainer.isHidden()) {
             isGeOfferSetupOpen = true;
 
@@ -136,7 +133,7 @@ public class OsrsMerchPlugin extends Plugin {
                 this.selectedItemId = itemId;
             } else {
                 // Fallback check on offer setup item widget
-                Widget itemWidget = client.getWidget(WidgetInfo.GRAND_EXCHANGE_OFFER_CONTAINER);
+                Widget itemWidget = client.getWidget(ComponentID.GRAND_EXCHANGE_OFFER_CONTAINER);
                 if (itemWidget != null && itemWidget.getItemId() > 0) {
                     this.selectedItemId = itemWidget.getItemId();
                 }

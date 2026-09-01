@@ -1,8 +1,6 @@
 package com.osrsmerch;
 
 import com.google.gson.Gson;
-import com.osrsmerch.model.ItemMapping;
-import com.osrsmerch.model.ItemPriceData;
 import com.osrsmerch.service.OsrsWikiPriceService;
 import okhttp3.OkHttpClient;
 import org.junit.Assert;

@@ -14,8 +14,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.SoundEffectID;
+import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.input.MouseAdapter;
 
@@ -33,7 +33,6 @@ public class GeInputHandler extends MouseAdapter {
 
     private final Client client;
     private final ClientThread clientThread;
-    private final OsrsMerchConfig config;
 
     private final Map<ButtonType, Rectangle> buttonBounds = new HashMap<>();
     private final Map<ButtonType, Integer> buttonPrices = new HashMap<>();
@@ -47,10 +46,9 @@ public class GeInputHandler extends MouseAdapter {
     private boolean overlayActive = false;
 
     @Inject
-    public GeInputHandler(Client client, ClientThread clientThread, OsrsMerchConfig config) {
+    public GeInputHandler(Client client, ClientThread clientThread) {
         this.client = client;
         this.clientThread = clientThread;
-        this.config = config;
     }
 
     public void registerButton(ButtonType type, Rectangle bounds, int price) {
@@ -130,7 +128,7 @@ public class GeInputHandler extends MouseAdapter {
             return;
         }
 
-        Widget geOfferContainer = client.getWidget(WidgetInfo.GRAND_EXCHANGE_OFFER_CONTAINER);
+        Widget geOfferContainer = client.getWidget(ComponentID.GRAND_EXCHANGE_OFFER_CONTAINER);
         if (geOfferContainer == null || geOfferContainer.isHidden()) {
             return;
         }

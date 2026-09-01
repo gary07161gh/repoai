@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.osrsmerch.OsrsMerchPluginLauncher" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-01T00:09:50" hostname="DESKTOP-KJ34D1H" time="100.69">
+  <properties/>
+  <testcase name="testLauncher" classname="com.osrsmerch.OsrsMerchPluginLauncher" time="100.69"/>
+  <system-out><![CDATA[2026-09-01 01:09:58 BST [Test worker] INFO  net.runelite.client.RuneLite - RuneLite 1.12.37 (launcher version unknown) starting up, args: none
+2026-09-01 01:09:58 BST [Test worker] INFO  net.runelite.client.RuneLite - Java VM arguments: -Dorg.gradle.internal.worker.tmpdir=C:\Users\Gary0\Desktop\OSRS MERCH\build\tmp\test\work -Dorg.gradle.native=false -Xmx512m -Dfile.encoding=UTF-8 -Duser.country=GB -Duser.language=en -Duser.variant -ea
+2026-09-01 01:10:01 BST [Preloader] INFO  net.runelite.client.rs.ClientLoader - injected-client 32956056058.238
+2026-09-01 01:10:06 BST [Test worker] INFO  injected-client - read 5 credentials from disk
+2026-09-01 01:10:07 BST [Test worker] INFO  n.r.client.config.ConfigManager - Profile 'default' (sync: false, active: false, id: 273719487900)
+2026-09-01 01:10:07 BST [Test worker] INFO  n.r.client.config.ConfigManager - Profile 'GARY ALT' (sync: true, active: true, id: 1194062228400)
+2026-09-01 01:10:07 BST [Test worker] INFO  n.r.client.config.ConfigManager - Profile 'FLIP ALT 1' (sync: true, active: false, id: 32940650350199)
+2026-09-01 01:10:07 BST [Test worker] INFO  n.r.client.config.ConfigManager - Profile '$rsprofile' is up to date
+2026-09-01 01:10:09 BST [Test worker] INFO  n.r.client.config.ConfigManager - Using profile: GARY ALT (1194062228400)
+2026-09-01 01:10:09 BST [Test worker] INFO  n.r.client.config.ConfigManager - Profile 'GARY ALT' is up to date
+2026-09-01 01:10:23 BST [Test worker] INFO  n.r.c.plugins.kourendlibrary.Library - Library is now reset
+2026-09-01 01:10:28 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "npc-contact-filter" jar "9XMjs4SqQdYWn9IPyoz9GLdxxY50c47NGCfpt6qr9ZQ"
+2026-09-01 01:10:28 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "large-logout" jar "W2f0HHGf5tuJADDh0IFonkTR03TBEy7gKgMmBu3-m-0"
+2026-09-01 01:10:28 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "not-empty" jar "JHB6rOEQ8VD1rymbfBm7zWhAb-Rm-A1RqRXwLLDVM6w"
+2026-09-01 01:10:29 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "barrows-potential" jar "COxCwigB2DlCBwfMf1fRucc7lvONiqL8ywRz-cA9H4U"
+2026-09-01 01:10:29 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "unpotted-reminder" jar "69ijFd0XOCmJQ-LqBdnb1fitl8um8OMtOwMnT4TI_Qs"
+2026-09-01 01:10:29 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "effective-level" jar "1sm7mhll4Hmp_6kST5oCNBEOsI9BcD5n3-By8QeFQa8"
+2026-09-01 01:10:29 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "ping-grapher" jar "hi_JamC8tdVZfDtDBnne8iMKgg2tngHYTZevOdCHSnY"
+2026-09-01 01:10:29 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "cannon-highlighter" jar "CgnY_T21u9rCVtNhXyt_ivqlMbHNMJZHKei0GvrAGfM"
+2026-09-01 01:10:29 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "boss-helper-bank-sync" jar "bChGUJLlE7XF9yPl2_kGSms4Yjk-Wo5PAFoTtMKeTCg"
+2026-09-01 01:10:30 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "storage-interactions" jar "NHCkDmLps0wIprfH8CuIRsmvPU8Y2Gvef8MW1JXsfX0"
+2026-09-01 01:10:30 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "hot-cold-helper" jar "pmTu0QvF3uxiWFjlXiYzI-PLhjUh23mUNB-6c0l-g-Y"
+2026-09-01 01:10:30 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "boss-health-indicators" jar "IevLLutHdTsQW48FiW2FZ7As9ngr6N47ySSfYO6U03g"
+2026-09-01 01:10:30 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "zulrah-helper" jar "BZp-rwRU14Wv9ZP0Qj9XtcehQ5-XUXFC4GU7CH-3i_w"
+2026-09-01 01:10:30 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "skills-tab-progress-bars" jar "woEZVJhZ9CV2xcEq1yHr03WL-oVBNRDUM9JYEU_1zRs"
+2026-09-01 01:10:30 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "slayer-task-sorter" jar "LsMrwvEkw6PB-MhbWTj9owmHc4ZF1jitNM4RtfsJ0Pw"
+2026-09-01 01:10:30 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "xray" jar "RF7WcMbWr-VMe2GHeqUDYqm4AzyiDL9y6KxjhwfkMvY"
+2026-09-01 01:10:30 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "fossil-island" jar "jt3cNkkq1zo-ccPTabZN1HsgAk2yJYmcavfz6ucpPl4"
+2026-09-01 01:10:30 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-templates" jar "dVX6-ERENAkkqnXjTpvw8cCBKCJfjewtzq3R6IJXYW8"
+2026-09-01 01:10:32 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "mage-animation-replacer" jar "4INLeXFzmX5h-bugRjXiP9FV6ZAuLqiTQal4UbGACjc"
+2026-09-01 01:10:32 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "taskjingle" jar "pfVFZmUrjAdYlb-G9n4VrQJkBM0ngCtar-kcdzQ9-aE"
+2026-09-01 01:10:32 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "terrain-toggle" jar "LVTyYtC5Tlcd_LSW_Ts_fQ_NzWOx5kmDPNfnPFVCytg"
+2026-09-01 01:10:32 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "dt2-mistake-tracker" jar "CHaqbegocrcjjFLKHTJuIv2opvzwgN3Jk3haHflU-oc"
+2026-09-01 01:10:32 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "spawnpredictor" jar "xoLRaqX3LHYAPkzg5M5CFjO8810s5ll9eoCXfSEaHO0"
+2026-09-01 01:10:33 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "tictac7x-storage" jar "4Vp0vLzf7wUyHMm-yBxBq654YrmZfockjiSiWhjmYd4"
+2026-09-01 01:10:33 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "missed-clues" jar "QDvO9aObhGkB8EA1CfGUkYQ2Avc39OWayJfybuKaa3M"
+2026-09-01 01:10:33 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "clue-details" jar "DHHKkEBC4YGMZSmQnvUYN_FimLWNvUxHnelF5TMLb90"
+2026-09-01 01:10:33 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "fuzzy-bank-search" jar "PU-UBFj2SU-WrWlCS4OISWuWBEyLSgGl66nV8e9BwEo"
+2026-09-01 01:10:33 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "the-gauntlet" jar "MPZu7SFrQWWi7lzSCu8oK67UJ6dyZuUlyxH8gwjF08U"
+2026-09-01 01:10:33 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "health-notifications" jar "VvA7o-N49U_AdVOrv9hY5zzQyKIjkPEDHjgZnpN-j_o"
+2026-09-01 01:10:33 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "slayer-codex" jar "Hl9C65kVOisRrngsSH5REPVhlJ_opeF1W9oKd0ihCH4"
+2026-09-01 01:10:33 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "best-dps" jar "oaw5NqNHvfgBc6mIFoGvO2akoG8aaHxWjT-274WJSDk"
+2026-09-01 01:10:33 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "venator-path-finder" jar "wnzli0KRW4zFSrbz-R7hjGz3SnelBjeWopmF1K-oMkg"
+2026-09-01 01:10:33 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "gpu-legacy" jar "ZA6vqwTnLkSfs7-jzpXFqN_3OCfWaH_4s89SOu-jRfQ"
+2026-09-01 01:10:34 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "combo-runes-only" jar "xkJvRsV_Jr7faDuBx9uYyg2zmdCfGacjt8sJsaXqsOo"
+2026-09-01 01:10:34 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "gauntlet-minimap" jar "4kwuiRTHf6649Z7f0y8noYD_S1iHT0OLQ4HCowYxG1g"
+2026-09-01 01:10:34 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "slayer-simplified" jar "FMl5N5oRNeUtFSF6xt2UQ81JFhqrN-i2yEeYi3wlkp8"
+2026-09-01 01:10:39 BST [Test worker] INFO  c.s.s.LocationCoordinateService - Loaded 287 location definitions (400 total name lookups) for Slayer Simplified
+2026-09-01 01:10:39 BST [Test worker] INFO  c.s.services.TileNoteService - TileNoteService: loaded 89 task keys, 146 total tile entries from /data/tile_notes.json
+2026-09-01 01:10:40 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "identificator" jar "BIPF768rDa5vztQb1ffag9oOCzJkMpLljBbWQ3vQw7I"
+2026-09-01 01:10:40 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "varlamore-house-thieving" jar "wept-T7xClDj0uBQ8n4yu6x-webMVg8rPRO7Eab66yc"
+2026-09-01 01:10:40 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "decimal-prices" jar "zCwUq9Q2ZlNJpqBL-sNZqqTBURfodHvJLiSyV9Z57hI"
+2026-09-01 01:10:40 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "profit-tracker" jar "n9Kpc3bwq4AQvM5TFtcojFeWr4JDHufzZ_JYNWtaguM"
+2026-09-01 01:10:40 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "wow-hud" jar "mWpgwSt-m582djtvpcpUpMfiG3dU5vTPqXpJHH8S1OQ"
+2026-09-01 01:10:40 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "chat-overlay" jar "ADjTKunBfVabi26dgzBK5R_hLQTFhfB8uJ7h1GTjHXs"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "target-true-tile" jar "ZB4HiY17qjdyDrbG9h3gR3pnbWCjOhIu8luWU5GJwME"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-highlighter" jar "_kUbQrfv-mnkSzg0exoWgfLYvw8kt1gj_u3DmUtVT34"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "slayer-helper" jar "h3XdSdK7qQ-kTpv-OGnTEtyIJY4ORL9o_02Z9IYP7V4"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "nex-droprate-calculator" jar "2Mu3AmlythBfmiD26-frXs22vIsgrwkHzGAb48J0KHw"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "better-object-hider" jar "NtkK9Cm-CDSKIp-Lko8ep0W0xALzcRWaYWokgra9a1k"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "casket-saver" jar "ru0vfICnNRiTjBW-tECkdG9pDGKXhqjxFqGaxKcOoyA"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "arceuus-timers" jar "KrtGoXlDEjXMZxKqRUno4qo80Mr3HzT-o3bUrtO-vRc"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "nexus-map" jar "CuAdrwAYuiQVF84UD7Ut6JgyDcJEmBPaU4Hwcqm-RMg"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "underwateragility" jar "j8VOCiPRHL-w5IqQjv6jYarnJbePOaweWM33e2zHZro"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "empty-forestry-basket" jar "B7EmJ0rd-Q-1f8MQOM4meBrLvhZyfnlwoudAokIXLlU"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "looting-bag-value" jar "wepvaFjdNsGD-Jr2qaaTdtY9CbGL-vZ-XdsZlE-lpvY"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "compass-camera-control" jar "sXgbi6O_fy3nvaPHn_WQARXloU1JYxCpz1t-OMHg-4A"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "item-retrieval-warning" jar "Z2snv9IS7ork_wOa25l6EdN9ow-5Co8wFltF6icKtLU"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "wilderness-slayer" jar "60IjKrLTSLDh6ZrqkBDM4cAUhBoJUNhpfMRQQ7QfhQ4"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "ge-utilities" jar "aNts670QKADioecbc0XMxOORuK5QiCVnxt6kMdz4Pmk"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "tile-packs" jar "-hJtrxzAE5jakB0ka6J_VZkkqj9W8MDdq_ILFutfVc8"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "inventory-retexture" jar "_Ihu3w2uPcBE3GLIFFXOZJyA-QIaOsDbHL5O6uy_fbo"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "wilderness-player-alarm" jar "O9TC0hoHLNdM75zD20BSC_fciybbCvYnc3_LP8R83a4"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "ticktracker" jar "-uu_7mS8DvMpjW4Na1S2o6U8ZCIakTwzPFiJ_8sSZj0"
+2026-09-01 01:10:41 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "chat-item-pricer-and-tooltips" jar "6Yk8APyzsgyxtAAKQpjeufLqeGgyfQUUaiJlsJW6ya0"
+2026-09-01 01:10:42 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-memory" jar "-jpU5Pdrf1D7EmtMw0J3h1AStBFjnr0YtkJUFszPBoQ"
+2026-09-01 01:10:42 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "shortest-path" jar "j65TV2lGDTkVcJlwg4jIvqU_Z2mHP1lUWx9t9lfkfRY"
+2026-09-01 01:10:42 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "cox-additions" jar "dCiil906C1465Gya6LyQXie5k-Li7zKPSEWoFx5zDW8"
+2026-09-01 01:10:42 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-tag-layouts" jar "peDUKI2Rq7TR7aP0JRbAgOybqB_EFBKUU3oBuaP3e2E"
+2026-09-01 01:10:42 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "better-resizable-chat" jar "FvC36Py8VPG3AdPCECB1rS6ThmkLpjqfvAm07A22CAc"
+2026-09-01 01:10:42 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "attacktimer" jar "cAOdcphmc-jX1yjRUddd_yGc3lBLSG4ACckuZKTu-g8"
+2026-09-01 01:10:42 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "world-map-runes" jar "zuA-k6lxOmBJqkRIZVPRLMvJmt8C3ReZJNv1D89Sojo"
+2026-09-01 01:10:42 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "weapon-charges-2" jar "n0kLwIrAteb3d_A84WkCEi76SS4_q6q4qd82IvTrxxs"
+2026-09-01 01:10:42 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "slayeraio" jar "q0MV6eE1gPBuB4rgAlkmYHJgIi4r-JUfp-prGVsemM4"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "custom-settings-easter-eggs" jar "Tg5_NaWvPuXpx8BdBCs5IYfMIstmI60m0wSRPZIUAxg"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-assistant" jar "AGUAsuzc8mYUcDwlyT7qJBI3WCNoYKcAJFgE3TL4sNQ"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "slayer-setup-prompt" jar "90p1MmMovKSW6L9z4dDHMR5zhXBXfEtbsmtNeHZLtMw"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "responsive-tooltips" jar "PQpX28zo6shZzRwl22uTZTiJEUWVEi35ngYI53ELfmM"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "ground-marker-profiles" jar "0M9JtIcHcalt2eAN5qxwIHL9FdCoyWTwFnKekxZ-LtA"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "yama-utilities" jar "xZBmbRNd53a_F5-nC55dqBq-tXqGzXlHXQ0ICV1FdLE"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "clue-scroll-juggling" jar "44NJekDuiW3Vx7Pjit-bVVsDNAtA8qrbx9kkiPUfH80"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "poh-portal-labels" jar "oEYf_ieBFVaFAosoc3YV6Si8luwHJNh4UTlrZLpcaUs"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "configurable-slayer-task-overlay" jar "HWRx9AJuJj-y4XV8pOmWDac8E5gTqHqKhd9UdWabNLo"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "charge-calc" jar "LGbbymdsldkFB8-bcqUGj0WGCYJgoGT4CisYfv3M44Y"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "gauntlet-calculator" jar "-5gDuDd0MnbbgS0RhAxcEYswcG-yDNPjmWZFlxLH4Lg"
+2026-09-01 01:10:43 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "quest-helper" jar "zu1PCF36dNHZjk8aJvqJ7S7KXRbtcss3B5QW82DzvoU"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "royal-titans-damage-tracker-plugin" jar "NxgMS5b3d28l7XeosIs2j_78rjt2OGt49pDYSyIjkJg"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "improved-tile-indicators" jar "djdpT4aqgoBhxlS7fcJe_pNH0Blu8sRtmga3J8dfG6I"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "no-stalactites" jar "ok-F8kSZ9vcsPOwvo2RkxnaezfLcYggaWv1TyDCGT2o"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "sorted-bank" jar "mKQSQ4tvXq9Uh6Af0LqDGxRDorefzXOEwrHI3sM4y8s"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "totem-fletching" jar "e0KoGyqT3hZ-x0_qQw3uCc4TbfNgVd91nSSf9sBhE3g"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "click-minimap-orbs" jar "10RWEXQTmFbM-YpEp70shQ-grAJrAl95HnpHunDfvuo"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-tab-names" jar "53AQgUlrr13DaaijHNmJIv2IWuMZ8M7QIY7LrqhoOlw"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "ecumenical-key-tracker" jar "-6NMphuenE2ZNEUIY6aC7B_aNqdrP-scympJIXqCG5M"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "item-reminders" jar "zKg6O3OlsDR1xTGBWitguqx9z-UJJLXct_sNBWzE65w"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "toggle-chat" jar "GSMJvTruw6h_t--ZMhcJ3I6t-BGQQKzMHJn3Wj1rMME"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "vorkath-run-warning" jar "QIAzAU148FR6M651NSTEwPK_5Kfyd6foRqh78sxnZdY"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "07flip" jar "VryQ0rs24NK5aEp4W0-hPHDVhWwIuk0osSEViQu1Qas"
+2026-09-01 01:10:46 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "more-status-bars" jar "5wChdi_ZIDlQavnI98oOSHSroyxVWnlXU8AW-MKqBEM"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "overhead-alarm" jar "nD2HL0WphOhqcuBpiUbXTHrjQ83EQO_z7q6Ajjstjas"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "timers-ca" jar "L9zrtoyiIVZPWpXaoZ9nmBH8pzNWwjbMHc30C6cPRLI"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "gecalc" jar "SaC3ALjR_8-yuLlANmSw354dQYnjQWfvkqXP5iA5eqI"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "superior-slayer-tracker" jar "37lNvHWdxla23zxYYPanTNHTO_g4_dD3QhnwcIHR1FA"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bis-loadouts" jar "wUUYg1cuX5ZRRsqw-kIvBTNdIysyPrEPRKmIf8RhiBA"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "ring-of-time" jar "74Pl8LQC4quvx6u1s-YwXL0jRSAhkQVd3uTwhidWHiA"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "metrics-tracker" jar "75gTIccxExIEQhtf3gm_-BY0tChnARnPTlGupaUn5Dk"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "prayer-regeneration-helper" jar "6I5bquU2p_BtLEZRUE44fRkvesCd-WFvjdnBPwS1Fxg"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "toa-custom-presets" jar "tZriv2M8i-vCPxwrIigsGGBfdfQplIgKpJqithSViXQ"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "door-kicker" jar "IivG2xXZ6MsPQu_hvczectxaAAbgPHA137oupg4BkIk"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "hunllef-helper" jar "dzb2DodSLZyriMcagbaUPscR24Fnk0L3Vlj-jL_K-kE"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "home-improvement" jar "b67bXm173Seea_fhyj6FKihZhgYbStXEb6CqQ9UB608"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "frozen-icon-me" jar "IUTZ884tyNAjaTxYfS8w1uflzBG0QYj6gYzA5AiA3Is"
+2026-09-01 01:10:47 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "cox-qol" jar "RlooMMHnlA2DlBwiG-RiTOd9CNAJfcygucbN055-lhk"
+2026-09-01 01:10:48 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "attack-sound-notifications" jar "IfE6010c9rpu5mKdiabYQt850jOfvmyO6uNv52_MOrk"
+2026-09-01 01:10:48 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "treecount" jar "pU9StKPnVTUA9bz6_qHeE3ox9LsFhu5oyDF0uOzcx8Q"
+2026-09-01 01:10:48 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "guardians-of-the-rift-helper" jar "78cHiZmqH1Xd3gMTf-ncjlIoiBiGcHw3hvO_GWqClvU"
+2026-09-01 01:10:48 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "exchange-insights" jar "k8KcWsSI77r9EOfscNJcjZPjZdHvcio42RyB5hwXksk"
+2026-09-01 01:10:48 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "object-hider" jar "fB1M9yYMk4zLzoA3LJLC7_nmzhb6B1-GsbzlPvbmoRo"
+2026-09-01 01:10:48 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "lower-chat-box" jar "WMF45lX1e0uF4r2Kv5zY8TJb1MaZ_JEpzoEA18qCbvE"
+2026-09-01 01:10:48 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "burner-alarm" jar "Qru10DlRuKhha3ajzadqGNYvsRi-xP74BKittVrhHow"
+2026-09-01 01:10:48 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "visual-metronome" jar "V98X0Hy2-k36xyXoCWKaVRcHEVrOCb_aSLd8LuhYxdg"
+2026-09-01 01:10:48 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "compact-orbs" jar "LwWjABw1cVIYk8_PA321YB9Ds3MCC-8RXCt3YvvBVIM"
+2026-09-01 01:10:48 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "merch-lens" jar "hpeQbfQZn2Bzb8dxk_ojPci2V1cRaDgFmcYys1YQ520"
+2026-09-01 01:10:49 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "loadout-lab" jar "7Mzgpq3PKaykuJTSZhSesEfsaL84VX0rRpHozDHq4t4"
+2026-09-01 01:10:49 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-tab-organizer" jar "1h-PxDOpGJo3u-JlJ7sd35iMzFVodGU_ir0rS-PJndA"
+2026-09-01 01:10:49 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "red-clicks-only" jar "wdTo6LPzRkZn9e1AK6bg9_M3ntzrb79jMJq-ONMXobI"
+2026-09-01 01:10:49 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "better-teleport-menu" jar "PpCdxcblJskjGvm45rlz6ueMLc2bpXhL8TxYu5mw_kE"
+2026-09-01 01:10:49 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "fight-cave-helper" jar "GSuDmLn5ghAMKyHzW4s_j6nME-8uWtl0iCQOD49ReGY"
+2026-09-01 01:10:49 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "loot-filters" jar "IksroY5rO3cY3kcHgq8gBVvulyGF3QTuEjgKAG-gh1E"
+2026-09-01 01:10:49 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "customizable-xp-drops" jar "bp8YLcXmx2hh1bmDiMk62plbm64gbbNcyuch6e2SkMU"
+2026-09-01 01:10:50 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "flipping-utilities" jar "QXDV6ni3MV7nUNz7PiKDWFVYBAdBxvHWkuY7zwNhaGI"
+2026-09-01 01:10:50 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "tictac7x-rooftops" jar "fYGQVH_UeS4_8GVd703gyYUgWeh3nrtJm-AAB7xg4aw"
+2026-09-01 01:10:50 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "loot-lookup" jar "BCbUEvi7pqc8Iqlm4M8vOMFApijggrbbt2J2Q6IPT5s"
+2026-09-01 01:10:50 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "inventory-value-overlay" jar "R8NC8bdhjccwx5rFQsAkSYGHFNAgn6wp-opQn8Yrd9U"
+2026-09-01 01:10:50 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "no-examine" jar "zPyaBFeGL_MnD7jYdrXtFu2gM528lWsGfxdIsJa7bL8"
+2026-09-01 01:10:50 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "tick-manipulation-helper" jar "5tABgG-m8EVzSSmsX5Ow7KDhKgF3CzCRnx5djWilloE"
+2026-09-01 01:10:50 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "visibilityenhancer" jar "nL7N543XdTiFfvPaUZDBFg14hayCXMfUHaLCsx6AeLY"
+2026-09-01 01:10:50 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "tombs-of-amascut" jar "wqP0MEpuXiIskm4I-JQWBkm-J1cTq2O6QB-WjqhcQVc"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "monster-hp-percentage" jar "Or-LpNLBpKxVWW9Vf2tSaQYDSGgv2-QVVGXhaxfGWkc"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "corp-ffa07" jar "tw-BINz7yCJwhDURTBOlrx5oqhVEfG91Ux1sNim44ME"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "chatbox-opacity" jar "Zsyc98G0rea4yBRfp07-DO4gMaUkSCr54L2j6z5XVXI"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "casket-sounds" jar "Gqxce9KDVd2xXP10GEKOVFlmdIZ8sfO1SP8T4AtDpos"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "hit-sounds" jar "Erl3aERVykh9QjH1ey0-AU-0IlUBJ7tTGtBbQezwj2U"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "hide-prayer-descriptions" jar "7b0aSAVevK0BY1JuISImpFuChhYNwKZzw6HP2o55c1o"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-slot-sync" jar "gwenfNp_-PqK8Uc23apjbAuFv-kbrHOTvPIV_rGtaqA"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "monkey-metrics" jar "vBJn2j0wDSKNbBM9RscKAev4us1VIIiVEF0hZI8kOF4"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "resizable-chat" jar "IZrAuVaPrKoI8FpaGnZ6ju31N4pcysAp0cpfnfvquA0"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "runepouch-loadouts" jar "5bbNdqXLRDoverSks7LGvSEUE3vYOmhhlfMXa-puepQ"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "action-progress" jar "D5PmDpAEvvErW7NhRp6W2JyNG63NdOf3f0RLWFe7_Ro"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "shortest-clue" jar "ygh5xVKUCRaDWXLtVtkisqIPyANu8qC-dTOD_F0D6ak"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "debug" jar "MBcZ6WjMB5P_Qk9l7qs_VLwzlmnxWBNM5aFsGcVlWvU"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "party-panel" jar "fgMuSgeaiGhwTNH0upIm1eeI-RmDYE6zZS7TXGvxKSA"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "afk-overlay" jar "mItRiXY1tq2yUQgcePS9WCVmc-o8wHqRx4AXrYM0Llw"
+2026-09-01 01:10:52 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "turael-skipping" jar "cfQKan5VffPZMKCOCOrtnBAhjQMEcXO7lrUn6AE7ijI"
+2026-09-01 01:10:53 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "menu-swapper-extended" jar "R4YEVIndemMutZQj0-WcwejLhph9-vKD0htb3kGOXOU"
+2026-09-01 01:10:53 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "hide-spellbook-tooltip" jar "mxCwUK12rAnhT9cMF2AXWUC27elg2WwDVMIFd_g1ddg"
+2026-09-01 01:10:53 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "stockpile" jar "uVbO4qdGZqy3n9oHNYdqbAvny9xL3FDJyac1FkBseTY"
+2026-09-01 01:10:53 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "ospulse" jar "AC9uFn1lvpiROsoysqa7Asj6qFS9QLknolFGguch8uY"
+2026-09-01 01:10:53 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "hero-hud" jar "VFQDRTjFHHz_z8oIOgj_kz3VE93hTHZIL_q_NDrHqs8"
+2026-09-01 01:10:53 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "spec-regen-timer" jar "IH3FN9cY40N1SYmETIR_SR_l58YvlN7F6rTJxkZWkw0"
+2026-09-01 01:10:53 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "player-highlighter" jar "YrlVm-uJ54HkLFE8hkWlHqDLfqT8Tm9f4TNbCdJ5zbE"
+2026-09-01 01:10:53 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "hide-chat-buttons" jar "iDkBMITq8d9wzj0OlrcyS9E00DeyPKzQ8_1DH9qcUS0"
+2026-09-01 01:10:53 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "slayer-best-in-bank" jar "7EhOqNDlDiklm5jjnNMwwE-2QyxF1Dl2dUy2XO_7AMc"
+2026-09-01 01:10:53 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "gp-per-hour" jar "UpBhQYxCLnHoQWEi3R1z-KTZKIIQsNxr3Q9uYJbgaz0"
+2026-09-01 01:10:54 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "tempoross" jar "WXILBQV1OiUimXGxbN6FAnrVPiH2nvX9H1mMSp9MYoQ"
+2026-09-01 01:10:54 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "dynamic-inventory-tags" jar "syGNxzINT0hvsTBIwLwUWyVDuwYxB77DZ48LIG5Vzb0"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "runeprofile" jar "rPBBJPzeqVpaWzO1nNfi1EOGjCFop67Tm4aRdXGydgU"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "slayer-wiki" jar "YiaGnnvygvxsxSc7id-Ke9TJO_iQkkVKnCDPzGfnmnI"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "kitten-tracker" jar "PzSgJWY-1pI6T0cMBcHZItYCzTCkYhzaT__EQbWPDWw"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "spirit-tree-menu" jar "6B4IOmJYnfx70CEfXzacDiwdMzJFfKSbMoZnlQE5JL4"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "instant-inventory" jar "XV4OySMY9Bns70W0OnA_Cx3qdnpaCPCyl5LIxle8zDA"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "dynamic-entity-hider" jar "ttOEp0mmBlTXkYKurfkpWePuPsv7OOSZ7IKS1Xl_iRs"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "chest-kicker" jar "fw5SesT28PWxSX1-X6Jny9fQiOk35g6xZBtiq7wddnQ"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "lance-enhance" jar "xy34hO60vIo4PWhgK1zkEFsv0c6j92x4UgBgJnlH5iE"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "overhead-notifications" jar "9JX65QiBP2FmspCmw9zziWZqM2mmsfuAWXcrx2vz8fU"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "smoke-devil-effects-hider" jar "bqBGiXblamkNH2GD-dowDCmuAY8hh-uVMZy68INDopM"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "gauntlet-map" jar "vgp7ogV6gwImfkO7pc4y-J71SuymPf92N2zs_n8Cfss"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "quick-prayer-preview" jar "D8UExWpq1c1oEuc5ostenEcblpYWiTeaKAte4GDq-rY"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "ge-filters" jar "zFN61pBMY0aqTNnqthqIjbIBfqgiChDvyYCwWHCfoYQ"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-value-changes" jar "z2jNkAE6FpIe740MsWODkBOzMkWS8C8vRUeES1DuA0I"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "canvas" jar "wykyU9JMnz1JMMUyoB2wpGrdYMRJAgoI-0pNmqJ196A"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "defaulttab" jar "lPvKHyIsZse9j7WhIWKXPXTinbIrzX7syvCRh6NaJnM"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-equipment-stat-filter" jar "Hdr7RvR-Kxe7hh1v5bTBpvKi_mg-XsXu1n_VaT29j0o"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "guardians-of-the-rift-optimizer" jar "7_zvyQMfpoqMNtr-Z-hEAMH5MdPCOOeOGh-hNFYo22k"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "wikisync" jar "jq8s0Jt0gB6aSPdt0qUO9VjWn06GWP4Z4s6eXGLPf_w"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "goading-helper" jar "e2Uh9jGGhP-r9EWfqQ1N8Cv8YtbI7UK9lxxRMqbzt9w"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bracelet-reminder" jar "Y2DUW8l3De0EGc2RrRZtUFKrqHg6nP5ovtj7pqaElwo"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bis-gear" jar "ZpWnxPfD47HTbIy4EzjNocurGK48MLOmUi2mJXb1QC0"
+2026-09-01 01:10:55 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "resource-packs" jar "SUnRAcjufPWMCrx_MqGdWzxgxsjTI7uyyTh7zlHClHs"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-value" jar "y-xyeKEbHki3f3mmmxRlph6fBLmGilHB2v2VZ_mMXjY"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "annoyance-mute" jar "sDqTChNoxitRIwmnDJjqdL-Zf4MlHeN_fGWEwG-04TM"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "smart-metronome" jar "gEFIsTZIms5tCDMk4R32kEDvjbDDxoodMHRj4XFIYKo"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "slayer-additions" jar "WACWcPS4PDu9SyJM5HUD9ci98BS7X-IaVOtQD1mZstA"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "projectile-override" jar "ae_d4xl2DKaet6-g59vlAZ-oT9vVzZZ1epqsF0Xt3RY"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "costume-room-highlighter" jar "v4OxFEjtafPopkDijzHRPKl9csHsX3-xzeTitLns3Ok"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "thrall-helper" jar "i_I6wkmK29H1yO9i5VqiWOSsThNN6RWRliLa6NYO4fM"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "consumable-cooldowns" jar "NZM4oI4CpRnyVWd3Nf7dFArdNWNvAgi6qIEngaP8gAs"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "teleport-logger" jar "IjpxP8LXXWPS2_-hoS40b1gQ4WfvNcX-wu0sIwOFt5Y"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "better-godwars-overlay" jar "R-sjrKJjIyLCAI1sqaYiKL7lQtL0Hr6ujfKZEzT_R28"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "pvmtickcounter" jar "iuMH9jpDIaPT5YajiA336zor4udLhTdGkhGZ3iEBOd0"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "inventory-setups" jar "Yk_OPn5IsRvo7-YPubj8F4Ht1lnF-F9tOfBsajUGgGM"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "blackjack" jar "ZoQWjPQkx6F28BjeuV0fBs3UAV__Cj90OGcKaY8B4uc"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "tob-utilities" jar "x5R9t0wBQfSrzupXj5UJtxD_IbFcLJKJ9EwudIb5x3Y"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "logout-fix-resizable-modern" jar "H1bsLHXZtjYARhAduXKAp5hjwmuCRNFjmSjIRtUVGdE"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "menu-stones-hider" jar "GWSfeKwaEus0HSqr6rTMOYrJ1-82Njwvq_We-lx_WIs"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "xp-drop-extended" jar "pC3ZKV2ylssILJAIP8V6_xcexlV0iLiKUuy7PmZHv0w"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "flipping-copilot" jar "k0IFdfWKgoQNFvrfzVQPRTIMM5KGAfL5bx3V4aSJroU"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "chugging-barrel" jar "k82vQgtoYJJI2mS1XsphedXhIckgZ68SZLWNOJnLaj0"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "click-confirm" jar "tv6Z4s6GDtYGFLxBeB7H4xIr-0a2-lG17bnue-vcnn8"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "chat-widgets" jar "vqf5X1aoZtzHEiTD75TGZCbHn9W8TpGI2E4VU0VYWU4"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "poh-storage" jar "GFaoHewgNRUcP0G93xEwmp_Jv3zmedGuQpR-m_hCjiY"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "tray-indicators" jar "DAaVEyRqT9hIbfUoVyZmUDodBN_QhZGxTTMS_c_Fxxg"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "chat-fade" jar "Yd8Y0LjzWlB4qaRGd0O3jHHeZGe0yArzfUgpEZgM7y8"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "collapse-chat" jar "f1OJi6nGVWNNN9wY7lHprDF1UJwIe0z4x8vSVApsiXI"
+2026-09-01 01:11:00 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "tobqol" jar "nHA4C0sdmynxNyP6x0EOLH_WVhBbHaUq0S_hF3hbBzU"
+2026-09-01 01:11:01 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "life-saver" jar "qbMl5xUYz425lNSW8IhBEtPMGlA88Yj7rf8agvgfJTA"
+2026-09-01 01:11:01 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "pvmhud" jar "QwW4DbEPARldztzjP7_mIFCHk9d7YvCE1gQu11ZARfg"
+2026-09-01 01:11:01 BST [OkHttp https://api.flippingcopilot.com/...] INFO  c.f.c.CopilotLoginController - loading 1 copilot accounts succeeded - took 698ms
+2026-09-01 01:11:01 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "kph-tracker" jar "Jc_l0GsXy-wcC1bDxTKDrjSWTz4NgrKI1YwSyh2WLnA"
+2026-09-01 01:11:01 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "slayer-task-time-tracker" jar "yhbVz76OrcE4ukvwljQTp2bjjirRoFHnAIrzwc-J4EQ"
+2026-09-01 01:11:01 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "demonic-larva-tracker" jar "wHP_ge4Ixk3387KvXp89HR4XlE83AuqfwSiqD8x-P2I"
+2026-09-01 01:11:02 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "clue-steps" jar "p5CCt00xw48jlAYbPi5GdiMWG5eY5POXGD2lo7P7x8U"
+2026-09-01 01:11:02 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "gpu-experimental" jar "UHWLLqr4_ni40jstIGOPudLBiodf-_BGAgimJT1bjnE"
+2026-09-01 01:11:02 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "custom-item-tags" jar "g-3EVVP9fUrWee_LVomaPzWOxbsYnPQT1mm9w-u9mtg"
+2026-09-01 01:11:02 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "dps-helper" jar "BAA297SYIOf1HjjjxSXPhcWz3NMxf1CU3YgDs9QN2O0"
+2026-09-01 01:11:02 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "stealing-artefacts" jar "KYD9NK3cedk6oVD1Vf3TGINmbHXuLlJ7cVblagzrgSM"
+2026-09-01 01:11:02 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "duke-barrel-swap" jar "SjGZAqCEuCJpFLFKx8xQog0TXXdZZnHidOBytfdE3FE"
+2026-09-01 01:11:02 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "hide-chat" jar "crZM3m8XQiTGA1MaV71jlPH4lL_MudKNDQ7hSGU44G0"
+2026-09-01 01:11:03 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "117hd" jar "UfpEqFUM4fxcrb7uwuldVs8gi-MvY7Fgf4dTk32Pr70"
+2026-09-01 01:11:04 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "barrows-door-highlighter" jar "It3hE3StvlV_84D2hy-HTPV_KGPSbfqtNko41LgpcTA"
+2026-09-01 01:11:05 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "radius-markers" jar "e7y5LE2oeSPYBLrvFbHEjghYIO7XQPjP3qPVqSs6lC4"
+2026-09-01 01:11:05 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "remove-chatbox-separator" jar "KcyXOaCYdUJRPH7rD-RM0lD44OYBkfFs6KnGGAlsmGo"
+2026-09-01 01:11:05 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "equipment-inspector" jar "NCwPhvbsjC1L8WoURzWhkCoY9CJmamqghrXRqxBko5s"
+2026-09-01 01:11:05 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "item-requirements" jar "tYc2ZOvTXCH1EvJFJo0XHsjjzpIhCraig-1UlIPzkLw"
+2026-09-01 01:11:05 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "bank-tag-generation" jar "1sHb5rgCZJ1A1NW_zKT7VoGLYjp5mizmU0Np5RhyJoY"
+2026-09-01 01:11:05 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "vineyard-helper" jar "2tWZUJWMBPiNS6VxpGR8wHt5yayQk484-z8DKHCKjDs"
+2026-09-01 01:11:05 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "better-npc-highlight" jar "hp_Q-bPOo51VVwPB_7j-abDbWOrQJ64HyEDS9aR4gVQ"
+2026-09-01 01:11:05 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "menu-highlighting" jar "I-dKftGd7ivpcXALxuXnCgvJMNj6R6I_TDpIjmkS6gg"
+2026-09-01 01:11:05 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "hide-widgets" jar "gg294_sArlbIWYKadpIieQoojCYVXPXlEGWZrIu9LuQ"
+2026-09-01 01:11:05 BST [Test worker] INFO  n.r.c.e.ExternalPluginManager - Loading external plugin "hotkeyable-menu-swaps" jar "5D1Quxu_AUsv-BsvZeqRZ-kCpYxyA9J-aw1ZPKqRoJ8"
+2026-09-01 01:11:07 BST [Test worker] INFO  n.r.client.discord.DiscordService - Initializing Discord RPC service.
+2026-09-01 01:11:17 BST [AWT-EventQueue-0] INFO  dekvall.notempty.NotEmptyPlugin - Not Empty started!
+2026-09-01 01:11:17 BST [AWT-EventQueue-0] INFO  com.taskjingle.TaskJinglePlugin - Task jingle started!
+2026-09-01 01:11:17 BST [AWT-EventQueue-0] INFO  com.decimalprices.DecimalPrices - Decimal prices started!
+2026-09-01 01:11:20 BST [AWT-EventQueue-0] INFO  c.nostalactites.NoStalactitesPlugin - No Stalactites started
+2026-09-01 01:11:21 BST [AWT-EventQueue-0] INFO  com.gecalc.GECalcPlugin - GE Calc - Started!
+2026-09-01 01:11:21 BST [OkHttp https://07flip.com/...] INFO  com.o7flip.O7FlipApiClient - [07Flip] GET /favourites returned 0 items (server count=0)
+2026-09-01 01:11:21 BST [AWT-EventQueue-0] INFO  com.example.FrozenIconPlugin - Frozen icon plug in started!
+2026-09-01 01:11:23 BST [AWT-EventQueue-0] INFO  com.bankslotsync.BankSlotSyncPlugin - Bank Slot Sync started! Tracking 1486 items across 476 variant groups.
+2026-09-01 01:11:24 BST [AWT-EventQueue-0] INFO  c.b.specregen.SpecRegenTimerPlugin - Spec Regen Timer started!
+2026-09-01 01:11:24 BST [Client] INFO  c.f.controller.RecipeHandler - Refreshed recipe mappings. Total items with recipes: 2788
+2026-09-01 01:11:24 BST [Client] INFO  c.f.controller.RecipeHandler - Local recipes count: 0
+2026-09-01 01:11:24 BST [AWT-EventQueue-0] INFO  c.salverrs.GEFilters.GEFiltersPlugin - GE Filters started!
+2026-09-01 01:11:24 BST [WebSocketSelector-69] ERROR o.j.server.WebSocketServer - Shutdown due to fatal error
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:567)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:337)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:294)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at org.java_websocket.server.WebSocketServer.doSetupSelectorAndServerThread(WebSocketServer.java:583)
+	at org.java_websocket.server.WebSocketServer.run(WebSocketServer.java:383)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2026-09-01 01:11:24 BST [WebSocketSelector-71] ERROR o.j.server.WebSocketServer - Shutdown due to fatal error
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:567)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:337)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:294)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at org.java_websocket.server.WebSocketServer.doSetupSelectorAndServerThread(WebSocketServer.java:583)
+	at org.java_websocket.server.WebSocketServer.run(WebSocketServer.java:383)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2026-09-01 01:11:30 BST [AWT-EventQueue-0] INFO  com.osrsmerch.OsrsMerchPlugin - OSRS Merch Plugin starting up...
+2026-09-01 01:11:30 BST [AWT-EventQueue-0] INFO  c.o.service.OsrsWikiPriceService - Starting OSRS Wiki Real-time Price Service...
+2026-09-01 01:11:31 BST [Test worker] INFO  net.runelite.client.RuneLite - Client initialization took 92274ms. Uptime: 104783ms
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
