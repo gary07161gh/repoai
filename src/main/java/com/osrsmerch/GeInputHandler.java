@@ -14,8 +14,6 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.SoundEffectID;
-import net.runelite.api.widgets.ComponentID;
-import net.runelite.api.widgets.Widget;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.input.MouseAdapter;
 
@@ -124,12 +122,7 @@ public class GeInputHandler extends MouseAdapter {
      * Injects or sets the price on the active Grand Exchange offer window.
      */
     public void applyPriceToGeOffer(int price) {
-        if (client == null) {
-            return;
-        }
-
-        Widget geOfferContainer = client.getWidget(ComponentID.GRAND_EXCHANGE_OFFER_CONTAINER);
-        if (geOfferContainer == null || geOfferContainer.isHidden()) {
+        if (client == null || !overlayActive) {
             return;
         }
 
