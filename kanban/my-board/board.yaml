@@ -1,0 +1,5 @@
+name: My Board
+lanes:
+  - todo
+  - doing
+  - done
