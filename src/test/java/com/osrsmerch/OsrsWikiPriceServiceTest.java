@@ -39,32 +39,4 @@ public class OsrsWikiPriceServiceTest {
         OsrsWikiPriceService service = new OsrsWikiPriceService(httpClient, gson, config);
         Assert.assertNotNull(service);
     }
-
-    @Test
-    public void testCheckApiReplacements() {
-        try {
-            Class<?> iface = Class.forName("net.runelite.api.gameval.InterfaceID");
-            for (Class<?> inner : iface.getDeclaredClasses()) {
-                if (inner.getSimpleName().toLowerCase().contains("exchange") || inner.getSimpleName().toLowerCase().contains("ge")) {
-                    System.out.println("InterfaceID inner class: " + inner.getSimpleName());
-                    for (java.lang.reflect.Field f : inner.getDeclaredFields()) {
-                        System.out.println("  field: " + f.getName() + " = " + f.get(null));
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Class<?> varp = Class.forName("net.runelite.api.gameval.VarPlayerID");
-            for (java.lang.reflect.Field f : varp.getDeclaredFields()) {
-                if (f.getName().contains("GE") || f.getName().contains("CURRENT")) {
-                    System.out.println("VarPlayerID field: " + f.getName() + " = " + f.get(null));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

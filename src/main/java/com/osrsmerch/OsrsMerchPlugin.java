@@ -7,13 +7,12 @@ import javax.inject.Singleton;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
-import net.runelite.api.VarPlayer;
 import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.events.WidgetClosed;
 import net.runelite.api.events.WidgetLoaded;
-import net.runelite.api.widgets.ComponentID;
-import net.runelite.api.widgets.InterfaceID;
+import net.runelite.api.gameval.InterfaceID;
+import net.runelite.api.gameval.VarPlayerID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -83,14 +82,14 @@ public class OsrsMerchPlugin extends Plugin {
 
     @Subscribe
     public void onWidgetLoaded(WidgetLoaded event) {
-        if (event.getGroupId() == InterfaceID.GRAND_EXCHANGE) {
+        if (event.getGroupId() == InterfaceID.GE_OFFERS) {
             checkGeState();
         }
     }
 
     @Subscribe
     public void onWidgetClosed(WidgetClosed event) {
-        if (event.getGroupId() == InterfaceID.GRAND_EXCHANGE) {
+        if (event.getGroupId() == InterfaceID.GE_OFFERS) {
             isGeOfferSetupOpen = false;
             selectedItemId = -1;
             inputHandler.setOverlayActive(false);
@@ -124,16 +123,16 @@ public class OsrsMerchPlugin extends Plugin {
             return;
         }
 
-        Widget geOfferContainer = client.getWidget(ComponentID.GRAND_EXCHANGE_OFFER_CONTAINER);
+        Widget geOfferContainer = client.getWidget(InterfaceID.GeOffers.SETUP);
         if (geOfferContainer != null && !geOfferContainer.isHidden()) {
             isGeOfferSetupOpen = true;
 
-            int itemId = client.getVarpValue(VarPlayer.CURRENT_GE_ITEM);
+            int itemId = client.getVarpValue(VarPlayerID.TRADINGPOST_SEARCH);
             if (itemId > 0) {
                 this.selectedItemId = itemId;
             } else {
                 // Fallback check on offer setup item widget
-                Widget itemWidget = client.getWidget(ComponentID.GRAND_EXCHANGE_OFFER_CONTAINER);
+                Widget itemWidget = client.getWidget(InterfaceID.GeOffers.SETUP);
                 if (itemWidget != null && itemWidget.getItemId() > 0) {
                     this.selectedItemId = itemWidget.getItemId();
                 }

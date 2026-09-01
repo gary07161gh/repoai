@@ -19,7 +19,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
-import net.runelite.api.widgets.ComponentID;
+import net.runelite.api.gameval.InterfaceID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.ui.overlay.Overlay;
@@ -139,16 +139,16 @@ public class OsrsMerchOverlay extends Overlay {
             return null;
         }
 
-        // Try standard chatbox container, parent, or full input
-        Widget chatbox = client.getWidget(ComponentID.CHATBOX_CONTAINER);
+        // Try standard chatbox container, message layer, chat area, or input
+        Widget chatbox = client.getWidget(InterfaceID.Chatbox.UNIVERSE);
         if (chatbox == null || chatbox.isHidden()) {
-            chatbox = client.getWidget(ComponentID.CHATBOX_PARENT);
+            chatbox = client.getWidget(InterfaceID.Chatbox.MES_LAYER);
         }
         if (chatbox == null || chatbox.isHidden()) {
-            chatbox = client.getWidget(ComponentID.CHATBOX_FULL_INPUT);
+            chatbox = client.getWidget(InterfaceID.Chatbox.CHATAREA);
         }
         if (chatbox == null || chatbox.isHidden()) {
-            chatbox = client.getWidget(ComponentID.CHATBOX_MESSAGES);
+            chatbox = client.getWidget(InterfaceID.Chatbox.INPUT);
         }
 
         if (chatbox != null && !chatbox.isHidden()) {
