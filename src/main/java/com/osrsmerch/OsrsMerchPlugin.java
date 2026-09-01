@@ -7,7 +7,9 @@ import javax.inject.Singleton;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
+import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.ScriptPostFired;
+import net.runelite.api.events.VarbitChanged;
 import net.runelite.api.events.WidgetClosed;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.gameval.InterfaceID;
@@ -26,9 +28,12 @@ import net.runelite.client.ui.overlay.OverlayManager;
 @PluginDescriptor(
     name = "OSRS Merch Overlay",
     description = "Real-time Grand Exchange buy/sell prices, margins, 2% tax, and volume overlay over the chatbox",
-    tags = {"grand exchange", "ge", "merch", "flipping", "prices", "overlay", "tax"}
+    tags = {"grand exchange", "ge", "merch", "flipping", "prices", "overlay", "tax"},
+    enabledByDefault = true
 )
 public class OsrsMerchPlugin extends Plugin {
+
+    private static final int VARP_CURRENT_GE_ITEM = 1151;
 
     @Inject
     private Client client;
@@ -96,19 +101,18 @@ public class OsrsMerchPlugin extends Plugin {
     }
 
     @Subscribe
-    public void onScriptPostFired(ScriptPostFired event) {
-        int scriptId = event.getScriptId();
-        // Script 779 / 80 / 84 / 782 are fired when GE item setup or search updates
-        if (scriptId == 779 || scriptId == 80 || scriptId == 84 || scriptId == 782) {
-            checkGeState();
-        }
+    public void onClientTick(ClientTick event) {
+        checkGeState();
     }
 
     @Subscribe
-    public void onVarbitChanged(net.runelite.api.events.VarbitChanged event) {
-        if (isGeOfferSetupOpen) {
-            checkGeState();
-        }
+    public void onScriptPostFired(ScriptPostFired event) {
+        checkGeState();
+    }
+
+    @Subscribe
+    public void onVarbitChanged(VarbitChanged event) {
+        checkGeState();
     }
 
     @Subscribe
@@ -127,19 +131,51 @@ public class OsrsMerchPlugin extends Plugin {
             return;
         }
 
-        Widget geOfferContainer = client.getWidget(InterfaceID.GeOffers.SETUP);
-        if (geOfferContainer != null && !geOfferContainer.isHidden()) {
-            isGeOfferSetupOpen = true;
+        Widget geSetup = client.getWidget(InterfaceID.GeOffers.SETUP);
+        if (geSetup != null && !geSetup.isHidden()) {
+            this.isGeOfferSetupOpen = true;
 
             int itemId = client.getVarpValue(VarPlayerID.TRADINGPOST_SEARCH);
+            if (itemId <= 0) {
+                itemId = client.getVarpValue(VARP_CURRENT_GE_ITEM);
+            }
+            if (itemId <= 0) {
+                itemId = client.getVarpValue(VarPlayerID.GE_LAST_OFFER_ITEM);
+            }
+            if (itemId <= 0 && geSetup.getItemId() > 0) {
+                itemId = geSetup.getItemId();
+            }
+            if (itemId <= 0) {
+                // Scan setup container children
+                Widget[] children = geSetup.getChildren();
+                if (children != null) {
+                    for (Widget child : children) {
+                        if (child != null && child.getItemId() > 0) {
+                            itemId = child.getItemId();
+                            break;
+                        }
+                    }
+                }
+            }
+            if (itemId <= 0) {
+                // Scan dynamic children
+                Widget[] dynChildren = geSetup.getDynamicChildren();
+                if (dynChildren != null) {
+                    for (Widget child : dynChildren) {
+                        if (child != null && child.getItemId() > 0) {
+                            itemId = child.getItemId();
+                            break;
+                        }
+                    }
+                }
+            }
+
             if (itemId > 0) {
                 this.selectedItemId = itemId;
-            } else if (geOfferContainer.getItemId() > 0) {
-                this.selectedItemId = geOfferContainer.getItemId();
             }
         } else {
-            isGeOfferSetupOpen = false;
-            selectedItemId = -1;
+            this.isGeOfferSetupOpen = false;
+            this.selectedItemId = -1;
         }
     }
 }

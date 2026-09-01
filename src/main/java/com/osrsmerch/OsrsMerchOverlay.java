@@ -151,20 +151,32 @@ public class OsrsMerchOverlay extends Overlay {
             return null;
         }
 
-        // Try standard chatbox container, message layer, chat area, or input
-        Widget chatbox = client.getWidget(InterfaceID.Chatbox.UNIVERSE);
-        if (chatbox == null || chatbox.isHidden()) {
-            chatbox = client.getWidget(InterfaceID.Chatbox.MES_LAYER);
-        }
-        if (chatbox == null || chatbox.isHidden()) {
-            chatbox = client.getWidget(InterfaceID.Chatbox.CHATAREA);
-        }
-        if (chatbox == null || chatbox.isHidden()) {
-            chatbox = client.getWidget(InterfaceID.Chatbox.INPUT);
+        // Try standard chatbox candidate widgets
+        Widget[] candidates = new Widget[] {
+            client.getWidget(InterfaceID.Chatbox.UNIVERSE),
+            client.getWidget(InterfaceID.Chatbox.CHATAREA),
+            client.getWidget(InterfaceID.Chatbox.CHAT_BACKGROUND),
+            client.getWidget(InterfaceID.Chatbox.MES_LAYER),
+            client.getWidget(InterfaceID.Chatbox.INPUT)
+        };
+
+        for (Widget w : candidates) {
+            if (w != null && !w.isHidden()) {
+                Rectangle r = w.getBounds();
+                if (r != null && r.width > 50 && r.height > 50) {
+                    return r;
+                }
+            }
         }
 
-        if (chatbox != null && !chatbox.isHidden()) {
-            return chatbox.getBounds();
+        // Fallback: standard bottom-left chatbox region in OSRS (519x165 px)
+        int canvasHeight = client.getCanvasHeight();
+        int canvasWidth = client.getCanvasWidth();
+        if (canvasHeight > 0 && canvasWidth > 0) {
+            int w = Math.min(519, canvasWidth);
+            int h = 165;
+            int y = Math.max(0, canvasHeight - h);
+            return new Rectangle(0, y, w, h);
         }
 
         return null;
