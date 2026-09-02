@@ -1,14 +1,13 @@
 package com.osrsmerch;
 
 import com.osrsmerch.model.TimeseriesDataPoint;
-import java.awt.BasicStroke;
+import com.osrsmerch.ui.OverlayTheme;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
-import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -16,19 +15,6 @@ import java.util.List;
  * Price lines (instabuy green, instasell pink) with volume bars underneath.
  */
 public class PriceGraphRenderer {
-
-    private static final DecimalFormat SHORT_FORMAT = new DecimalFormat("0.##");
-    private static final DecimalFormat GP_FORMAT = new DecimalFormat("#,###");
-
-    // Graph colors matching OSRS Wiki style
-    private static final Color GRID_COLOR = new Color(40, 46, 62, 120);
-    private static final Color AXIS_LABEL_COLOR = new Color(130, 140, 160);
-
-    // Line styles
-    private static final BasicStroke PRICE_LINE_STROKE = new BasicStroke(1.5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
-    private static final BasicStroke GRID_STROKE = new BasicStroke(0.5f);
-    private static final Font AXIS_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 8);
-    private static final Font LEGEND_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 8);
 
     private final Color instabuyColor;
     private final Color instasellColor;
@@ -38,8 +24,8 @@ public class PriceGraphRenderer {
     public PriceGraphRenderer(Color instabuyColor, Color instasellColor) {
         this.instabuyColor = instabuyColor;
         this.instasellColor = instasellColor;
-        this.buyVolColor = new Color(56, 189, 248, 180);   // Cyan
-        this.sellVolColor = new Color(251, 146, 60, 180);   // Orange
+        this.buyVolColor = OverlayTheme.BUY_VOL_COLOR;
+        this.sellVolColor = OverlayTheme.SELL_VOL_COLOR;
     }
 
     /**
@@ -53,8 +39,8 @@ public class PriceGraphRenderer {
      */
     public void render(Graphics2D g, List<TimeseriesDataPoint> points, int x, int y, int w, int h) {
         if (points == null || points.size() < 2) {
-            g.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 10));
-            g.setColor(AXIS_LABEL_COLOR);
+            g.setFont(OverlayTheme.FONT_ITALIC);
+            g.setColor(OverlayTheme.AXIS_LABEL_COLOR);
             g.drawString("Loading price history...", x + w / 2 - 55, y + h / 2);
             return;
         }
@@ -108,28 +94,34 @@ public class PriceGraphRenderer {
         int priceRange = maxPrice - minPrice;
         minPrice -= (int) (priceRange * 0.05);
         maxPrice += (int) (priceRange * 0.05);
-        if (minPrice < 0) minPrice = 0;
+        if (minPrice < 0) {
+            minPrice = 0;
+        }
 
-        if (maxVolume == 0) maxVolume = 1;
+        if (maxVolume == 0) {
+            maxVolume = 1;
+        }
 
         long minTime = points.get(0).getTimestamp();
         long maxTime = points.get(points.size() - 1).getTimestamp();
         long timeRange = maxTime - minTime;
-        if (timeRange <= 0) timeRange = 1;
+        if (timeRange <= 0) {
+            timeRange = 1;
+        }
 
         // Draw grid lines for price area
-        g.setStroke(GRID_STROKE);
-        g.setFont(AXIS_FONT);
+        g.setStroke(OverlayTheme.GRID_STROKE);
+        g.setFont(OverlayTheme.FONT_AXIS);
         int gridLines = 4;
         for (int i = 0; i <= gridLines; i++) {
             int gy = priceY + (int) ((double) i / gridLines * priceH);
-            g.setColor(GRID_COLOR);
+            g.setColor(OverlayTheme.GRID_COLOR);
             g.drawLine(chartX, gy, chartX + chartW, gy);
 
             // Y-axis price label
             int priceVal = maxPrice - (int) ((double) i / gridLines * (maxPrice - minPrice));
-            g.setColor(AXIS_LABEL_COLOR);
-            String label = formatShortGp(priceVal);
+            g.setColor(OverlayTheme.AXIS_LABEL_COLOR);
+            String label = OverlayTheme.formatShortGp(priceVal);
             FontMetrics fm = g.getFontMetrics();
             g.drawString(label, chartX - fm.stringWidth(label) - 3, gy + fm.getAscent() / 2);
         }
@@ -150,17 +142,17 @@ public class PriceGraphRenderer {
                 timeLabel = minsAgo + "m ago";
             }
 
-            g.setColor(AXIS_LABEL_COLOR);
+            g.setColor(OverlayTheme.AXIS_LABEL_COLOR);
             FontMetrics fm = g.getFontMetrics();
             g.drawString(timeLabel, lx - fm.stringWidth(timeLabel) / 2, priceY + priceH + bottomMargin);
 
             // Subtle vertical grid line
-            g.setColor(GRID_COLOR);
+            g.setColor(OverlayTheme.GRID_COLOR);
             g.drawLine(lx, priceY, lx, priceY + priceH);
         }
 
         // Draw price lines
-        g.setStroke(PRICE_LINE_STROKE);
+        g.setStroke(OverlayTheme.PRICE_LINE_STROKE);
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         int prevHighX = -1, prevHighY = -1;
@@ -220,7 +212,7 @@ public class PriceGraphRenderer {
     }
 
     private void renderLegend(Graphics2D g, int x, int y, int w) {
-        g.setFont(LEGEND_FONT);
+        g.setFont(OverlayTheme.FONT_LEGEND);
         FontMetrics fm = g.getFontMetrics();
         int dotSize = 6;
         int gap = 8;
@@ -253,19 +245,5 @@ public class PriceGraphRenderer {
         g.fillRect(lx, ly, dotSize, dotSize);
         lx += dotSize + 3;
         g.drawString("Sell vol", lx, ly + fm.getAscent() - 1);
-    }
-
-    private String formatShortGp(long amount) {
-        if (amount == 0) return "0";
-        if (Math.abs(amount) >= 1_000_000_000) {
-            return SHORT_FORMAT.format(amount / 1_000_000_000.0) + "B";
-        }
-        if (Math.abs(amount) >= 1_000_000) {
-            return SHORT_FORMAT.format(amount / 1_000_000.0) + "M";
-        }
-        if (Math.abs(amount) >= 1_000) {
-            return SHORT_FORMAT.format(amount / 1_000.0) + "K";
-        }
-        return GP_FORMAT.format(amount);
     }
 }
